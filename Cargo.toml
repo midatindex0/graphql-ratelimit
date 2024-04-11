@@ -1,0 +1,20 @@
+[package]
+name = "graphql-ratelimit"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+apollo-parser = { version = "0.7" }
+time = { version = "0.3" }
+flurry = { version = "0.5", optional = true }
+serde = { version = "1.0", features = ["derive"], optional = true }
+
+[features]
+default = ["mem-token-bucket"]
+mem-token-bucket = ["mem", "token-bucket"]
+mem = ["dep:flurry"]
+serde = ["dep:serde", "time/serde"]
+token-bucket = []
+async = []
